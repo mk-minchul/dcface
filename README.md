@@ -4,6 +4,7 @@
 Official repository for the paper
 DCFace: Synthetic Face Generation with Dual Condition Diffusion Model (CVPR 2023).
 
+- Arxiv: [https://arxiv.org/abs/2304.07060](https://arxiv.org/abs/2304.07060)
 - Main paper: [main.pdf](assets/main.pdf)
 - Supplementary: [supp.pdf](assets/supp.pdf)
 
