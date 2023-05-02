@@ -19,9 +19,12 @@ DCFace: Synthetic Face Generation with Dual Condition Diffusion Model (CVPR 2023
 pip install -r requirements.txt
 ```
 
-Training Code, Dataset and pretrained weights are coming soon. This is the image synthesis code.
+Training Code, and Dataset are coming soon. This is the image synthesis code.
 
 ### Image generation
+- Download the pretrained weights from the [link](https://drive.google.com/drive/folders/1ePqFN2eDo0l31aQOkW_U5Mcrlcl83j19?usp=share_link)
+- Place the `pretrained_models` directory under `dcface` (same level as `src`)
+- Run
 ```
 cd dcface/src
 python synthesis.py --id_images_root sample_images/id_images/sample_57.png --style_images_root sample_images/style_images/woman
