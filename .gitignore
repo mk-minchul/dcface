@@ -148,3 +148,6 @@ dmypy.json
 *.ckpt
 *.pt
 srcdatagen_framework/
+experiments/
+dcface/generated_images/
+dcface/sample_images

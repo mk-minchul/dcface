@@ -33,14 +33,14 @@ def same_config(config1, config2, skip_keys=[]):
 def download_ir_pretrained_statedict(backbone_name, dataset_name, loss_fn):
 
     if backbone_name == 'ir_101' and dataset_name == 'webface4m' and loss_fn == 'adaface':
-        root = os_utils.get_project_root()
+        root = os_utils.get_project_root(project_name='dcface')
         _name, _id = 'adaface_ir101_webface4m.ckpt', '18jQkqB0avFqWa0Pas52g54xNshUOQJpQ'
     elif backbone_name == 'ir_50' and dataset_name == 'webface4m' and loss_fn == 'adaface':
-        root = os_utils.get_project_root()
+        root = os_utils.get_project_root(project_name='dcface')
         _name, _id = 'adaface_ir50_webface4m.ckpt', '1BmDRrhPsHSbXcWZoYFPJg2KJn1sd3QpN'
     else:
         raise NotImplementedError()
-    checkpoint_path = os.path.join(root, 'checkpoints', _name)
+    checkpoint_path = os.path.join(root, 'pretrained_models', _name)
     os.makedirs(os.path.dirname(checkpoint_path), exist_ok=True)
     if not os.path.isfile(checkpoint_path):
         subprocess.check_call([sys.executable, "-m", "pip", "install", 'gdown'])

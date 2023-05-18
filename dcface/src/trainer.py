@@ -85,15 +85,9 @@ class Trainer(pl.LightningModule):
             params = params + list(self.label_mapping.parameters())
         return params
 
-    def get_discriminator_params(self):
-        params = list(self.adv_loss_module.parameters())
-        return params
 
     def configure_optimizers(self):
         opt = self.hparams.optimizer.optimizer_model(params=self.get_parameters())
-        if self.adv_loss_module is not None:
-            opt_dist = self.hparams.optimizer.optimizer_GAN(params=self.get_discriminator_params())
-            return [opt, opt_dist], []
         return [opt], []
     
     def load_state_dict(self, state_dict: 'OrderedDict[str, Tensor]', strict: bool = True):

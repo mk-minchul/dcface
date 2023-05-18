@@ -303,3 +303,4 @@ def sample_batch(id_images, style_images, pl_module, seed=None):
     plotting_images = pred_images * 255
     return plotting_images[:, :, :, ::-1]
 
+

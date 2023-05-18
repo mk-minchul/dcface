@@ -27,6 +27,12 @@ from src.general_utils.os_utils import get_all_files
 from src.visualizations.extra_visualization import ListDatasetWithIndex
 import numpy as np
 from src.visualizations.record import Writer
+import re
+
+def natural_sort(l):
+    convert = lambda text: int(text) if text.isdigit() else text.lower()
+    alphanum_key = lambda key: [convert(c) for c in re.split('([0-9]+)', key)]
+    return sorted(l, key=alphanum_key)
 
 
 def main():
@@ -42,11 +48,11 @@ def main():
     parser.add_argument('--partition_idx', type=int, default=0)
 
     parser.add_argument('--save_root', type=str, default=None)
-    parser.add_argument('--id_images_root', default='sample_images/id_images/sample_57.png')
-    parser.add_argument('--style_images_root', type=str, default='sample_images/style_images/woman')
+    parser.add_argument('--id_images_root', default='sample_images/id_images/2377.jpg')
+    parser.add_argument('--style_images_root', type=str, default='sample_images/style_images/combined')
 
-    parser.add_argument('--style_sampling_method', type=str, default='random',
-                        choices=['list', 'feature_sim_center:topk_sampling_top1',
+    parser.add_argument('--style_sampling_method', type=str, default='list',
+                        choices=['random', 'feature_sim_center:topk_sampling_top1',
                                  'feature_sim_center:top1_sampling_topk', 'list'])
     parser.add_argument('--use_writer', action='store_true')
 
@@ -85,12 +91,12 @@ def main():
         style_dataset.deterministic = True
     else:
         style_images = get_all_files(args.style_images_root, extension_list=['.png', '.jpg'])
+        style_images = natural_sort(style_images)
         style_dataset = ListDatasetWithIndex(style_images, flip_color=True)
 
     # load id images
     if os.path.isdir(args.id_images_root):
         id_images = get_all_files(args.id_images_root, extension_list=['.png', '.jpg'])
-        np.random.shuffle(id_images)
         if len(id_images) < args.num_subject:
             id_images = id_images * args.num_subject
         id_dataset = ListDatasetWithIndex(id_images, flip_color=True)
@@ -104,7 +110,8 @@ def main():
     if args.save_root is None:
         runname_name = os.path.basename(args.ckpt_path).split('.')[0]
         id_name = os.path.basename(args.id_images_root).split('.')[0]
-        args.save_root = os.path.join(root, 'generated_images', runname_name, f'id:{id_name}_sty:{args.style_sampling_method}')
+        style_dir_name = os.path.basename(args.style_images_root)
+        args.save_root = os.path.join(root, 'generated_images', runname_name, f'id:{id_name}/sty:{args.style_sampling_method}_{style_dir_name}')
         os.makedirs(args.save_root, exist_ok=True)
 
     print('saving at {}'.format(args.save_root))

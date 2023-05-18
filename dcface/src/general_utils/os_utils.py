@@ -31,11 +31,11 @@ def natural_sort(l):
     alphanum_key = lambda key: [convert(c) for c in re.split('([0-9]+)', key)]
     return sorted(l, key=alphanum_key)
 
-def get_project_root(project_name='datagen_framework'):
-    root = os.getcwd().split(project_name)[0] + project_name
+def get_project_root(project_name='dcface'):
+    root = os.getcwd().rsplit(project_name, 1)[0] + project_name
     return root
 
-def get_task(project_name='datagen_framework'):
+def get_task(project_name='dcface'):
     task = os.getcwd().split(project_name)[1].split('/')[-1]
     return task
 
