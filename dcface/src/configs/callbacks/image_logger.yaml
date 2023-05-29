@@ -1,0 +1,7 @@
+image_logger:
+  _target_: src.callbacks.image_logger.ImageLogger
+  _partial_: True
+  check_every_n_epoch: 1
+  num_custom1_visual_subjects: 8
+  num_custom1_visual_images_per_subject: 10
+

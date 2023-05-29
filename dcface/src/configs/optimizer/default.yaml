@@ -1,0 +1,10 @@
+
+optimizer_model:
+  _target_: torch.optim.AdamW
+  _partial_: true
+  lr: 1.0e-05
+
+optimizer_GAN:
+  _target_: torch.optim.AdamW
+  _partial_: true
+  lr: 1.0e-05

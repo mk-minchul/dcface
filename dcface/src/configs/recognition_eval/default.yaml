@@ -1,0 +1,9 @@
+backbone: ir_101
+dataset: webface4m
+loss_fn: adaface
+normalize_feature: false
+return_spatial: [2]
+head_name: none
+ckpt_path: null
+center_path: ${oc.env:REPO_ROOT}/dcface/pretrained_models/center_ir_101_adaface_webface4m_faces_webface_112x112.pth
+

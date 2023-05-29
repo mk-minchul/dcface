@@ -1,0 +1,5 @@
+defaults:
+  - default.yaml
+backbone: ir_50
+ckpt_path: ${oc.env:REPO_ROOT}/dcface/pretrained_models/adaface_ir50_webface4m.ckpt
+center_path: ${oc.env:REPO_ROOT}/dcface/pretrained_models/center_ir_50_adaface_webface4m_faces_webface_112x112.pth  # dummy so do not use this

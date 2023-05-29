@@ -1,0 +1,20 @@
+mse_loss_lambda: 1.0
+
+identity_consistency_loss_lambda: 0.0
+identity_consistency_loss_version: simple_mean
+identity_consistency_mix_loss_version: simple_mean
+identity_consistency_loss_source: center
+identity_consistency_loss_center_source: center
+identity_consistency_loss_time_cut: 0.0
+identity_consistency_loss_weight_start_bias: 0.0
+
+latent_mixup_loss_lambda: 0.0
+latent_mixup_loss_name: v1
+latent_mixup_loss_method: label_extrapolate_random_channel
+latent_mixup_loss_version: polynomial_10
+latent_mixup_loss_type: distance_infonce_loss
+spatial_consistency_loss_lambda: 0.0
+spatial_consistency_loss_version: simple_mean
+face_contour_loss_lambda: 0.0
+face_contour_loss_version: simple_mean
+

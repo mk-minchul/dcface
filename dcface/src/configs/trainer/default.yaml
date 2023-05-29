@@ -1,0 +1,24 @@
+_target_: src.trainer.Trainer
+_partial_: true
+image_size: 32
+channels: 3
+ckpt_path: ${oc.env:REPO_ROOT}/dcface/pretrained_models/ffhq_10m_ft.pt
+use_ema: True
+sampler:
+  num_train_timesteps: 1000
+  beta_start: 0.0001
+  beta_end: 0.02
+  variance_type: fixed_small
+
+first_stage_config: ${model.first_stage_config}
+cond_stage_config: ${model.cond_stage_config}
+unet_config: ${model.unet_config}
+optimizer: ${optimizer}
+paths: ${paths}
+precision: ${lightning.precision}
+datamodule: ${datamodule}
+recognition: ${recognition}
+recognition_eval: ${recognition_eval}
+losses: ${losses}
+external_mapping: ${external_mapping}
+label_mapping: ${label_mapping}

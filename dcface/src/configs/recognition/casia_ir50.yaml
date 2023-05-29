@@ -1,0 +1,5 @@
+defaults:
+  - default.yaml
+backbone: ir_50
+ckpt_path: ${oc.env:REPO_ROOT}/dcface/pretrained_models/adaface_ir50_casia.ckpt
+center_path: ${oc.env:REPO_ROOT}/dcface/pretrained_models/center_ir_50_adaface_casia_faces_webface_112x112.pth

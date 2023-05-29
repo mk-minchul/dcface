@@ -1,0 +1,5 @@
+version: v4_dropout
+return_spatial: ${recognition.return_spatial}
+spatial_dim: 3
+out_channel: 512
+dropout_prob: 0.3

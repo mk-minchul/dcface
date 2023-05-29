@@ -151,3 +151,5 @@ srcdatagen_framework/
 experiments/
 dcface/generated_images/
 dcface/sample_images
+unconditional_samples
+debug.sh

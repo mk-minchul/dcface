@@ -1,0 +1,33 @@
+unet_config:
+  type: ilvr
+  freeze_unet: false
+  params:
+    condition_type: null
+    condition_source: null
+    pretrained_model_path: ${paths.repo_root}/dcface/pretrained_models/ffhq_10m.pt
+    gradient_checkpointing: True
+    image_size: 32
+    in_channels: 3
+    out_channels: 3
+    cross_attention_dim: 512
+  model_params:
+    image_size: ${datamodule.img_size}
+    num_channels: 128
+    num_res_blocks: 1
+    channel_mult: ''
+    learn_sigma: True
+    class_cond: False
+    use_checkpoint: False
+    attention_resolutions: '16'
+    num_heads: 4
+    num_head_channels: 64
+    num_heads_upsample: -1
+    use_scale_shift_norm: True
+    dropout: 0.0
+    resblock_updown: True
+    use_fp16: False
+    use_new_attention_order: False
+
+
+first_stage_config: null
+cond_stage_config: null

@@ -1,0 +1,31 @@
+_target_: src.datamodules.face_datamodule.FaceDataModule
+_partial_: true
+dataset_name: 'ffhq/images256x256_aligned'
+data_dir: ${paths.data_dir}
+img_size: 112
+total_gpu_batch_size: 512
+batch_size: ${datamodule.total_gpu_batch_size}
+batch_size_eval: 32
+num_visual_per_stack: 32
+eval_num_images: 1000
+num_workers: 8
+pin_memory: True
+return_extra_same_label_samples: True
+train_val_split: ['0-all', '0.95-1.0']
+orig_augmentations1: ['flip:1.0']
+orig_augmentations2: []
+record_file_type: 'image'
+first_stage_config: ${model.first_stage_config}
+
+datagen_num_subj: 400
+datagen_num_img_per_subj: 8
+datagen_save_dir: ${paths.data_dir}/datagen_save_dir
+
+delete_generated_full_dataset: True
+fullgen_batch_size: 32
+fullgen_num_image_per_subject: 8
+fullgen_num_train_subject: 99999999
+fullgen_num_extra_subject: 1000
+fullgen_mixing_method: label_interpolate
+fullgen_style_sampling_method: random
+fullgen_sampler: ddim

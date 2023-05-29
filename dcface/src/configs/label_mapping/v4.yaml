@@ -1,0 +1,4 @@
+version: v4
+out_channel: 256
+num_latent: 8
+recognition_config: ${recognition}

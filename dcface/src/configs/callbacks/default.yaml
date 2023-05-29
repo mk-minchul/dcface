@@ -1,0 +1,14 @@
+defaults:
+  - model_checkpoint.yaml
+  - cuda_callback.yaml
+  - image_logger.yaml
+  - learning_rate_logger.yaml
+  - _self_
+
+model_checkpoint:
+  dirpath: ${paths.output_dir}/checkpoints
+  filename: "epoch_{epoch:03d}"
+  monitor: "val/mse_loss"
+  mode: "min"
+  save_last: True
+

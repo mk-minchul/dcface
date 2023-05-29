@@ -1,0 +1,42 @@
+# @package _global_
+
+task_name: "debug"
+#logger: null
+hydra:
+  job_logging:
+    root:
+      level: DEBUG
+
+lightning:
+  max_epochs: 3
+  accelerator: gpu # debuggers don't like gpus
+  detect_anomaly: false # raise exception if NaN or +/-inf is detected in any tensor
+  num_sanity_val_steps: 2
+  limit_train_batches: 10
+  limit_val_batches: 10
+  limit_test_batches: 10
+  check_val_every_n_epoch: 1
+
+datamodule:
+  num_workers: 0 # debuggers don't like multiprocessing
+  pin_memory: False # disable gpu memory pin
+  total_gpu_batch_size: 16
+  eval_num_images: 100
+  datagen_num_subj: 10
+  fullgen_num_train_subject: 10
+  fullgen_num_extra_subject: 10
+
+sampler:
+  sample_size: 4
+
+
+model:
+  unet_config:
+    params:
+      model_channels: 128
+      attention_resolutions:
+        - 4
+      channel_mult:
+        - 1
+        - 2
+        - 4

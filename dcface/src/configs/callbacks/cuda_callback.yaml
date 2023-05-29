@@ -1,0 +1,4 @@
+
+cuda_callback:
+  _target_: src.callbacks.cuda_callback.CUDACallback
+  _partial_: True

@@ -90,13 +90,14 @@ def main():
         style_dataset = datamodule.data_train
         style_dataset.deterministic = True
     else:
-        style_images = get_all_files(args.style_images_root, extension_list=['.png', '.jpg'])
+        style_images = get_all_files(args.style_images_root, extension_list=['.png', '.jpg', '.jpeg'])
         style_images = natural_sort(style_images)
         style_dataset = ListDatasetWithIndex(style_images, flip_color=True)
+        assert len(style_dataset) > 0, args.style_images_root
 
     # load id images
     if os.path.isdir(args.id_images_root):
-        id_images = get_all_files(args.id_images_root, extension_list=['.png', '.jpg'])
+        id_images = get_all_files(args.id_images_root, extension_list=['.png', '.jpg', '.jpeg'])
         if len(id_images) < args.num_subject:
             id_images = id_images * args.num_subject
         id_dataset = ListDatasetWithIndex(id_images, flip_color=True)
@@ -105,6 +106,7 @@ def main():
         args.num_image_per_subject = len(style_dataset)
         id_dataset = ListDatasetWithIndex(id_images, flip_color=True)
     else:
+        print('id_images_root is not a file or directory')
         raise ValueError(args.id_images_root)
 
     if args.save_root is None:
